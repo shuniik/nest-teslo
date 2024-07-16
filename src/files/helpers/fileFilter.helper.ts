@@ -1,0 +1,15 @@
+import { error } from "console";
+import { Multer } from "multer";
+
+export const fileFilter = (req: Request, file: Express.Multer.File,callback: Function) =>{
+    
+    if(!file) return callback(new Error('File is empty'),false)
+
+        const fileExptension= file.mimetype.split('/')[1]
+        const validExtension = ['jpg','jpeg','png','fig']
+
+        if(validExtension.includes(fileExptension)){
+            return callback(null,true)
+        }
+    callback(null,false)
+}
